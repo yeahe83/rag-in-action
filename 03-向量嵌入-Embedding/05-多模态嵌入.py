@@ -1,5 +1,7 @@
 """
 多模态嵌入简单示例：使用Visualized-BGE模型对图片进行编码
+安装visual_bge，参考：
+https://github.com/FlagOpen/FlagEmbedding/tree/master/research/visual_bge#readme
 """
 
 import torch
