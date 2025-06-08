@@ -1,6 +1,8 @@
 # 导入相关的库
-from llama_index.core import VectorStoreIndex, SimpleDirectoryReader
+from llama_index.core import VectorStoreIndex, SimpleDirectoryReader, Settings
 from llama_index.embeddings.huggingface import HuggingFaceEmbedding # 需要pip install llama-index-embeddings-huggingface
+from llama_index.llms.openai import OpenAI as LlamaOpenAI
+import os
 
 # 加载本地嵌入模型
 # import os
@@ -8,6 +10,9 @@ from llama_index.embeddings.huggingface import HuggingFaceEmbedding # 需要pip 
 embed_model = HuggingFaceEmbedding(
     model_name="BAAI/bge-small-zh" # 模型路径和名称（首次执行时会从HuggingFace下载）
     )
+
+# 设置OpenAI代理
+Settings.llm = LlamaOpenAI(api_key=os.getenv("OPENAI_API_KEY"),api_base="https://aiyjg.lol/v1")
 
 # 加载数据
 documents = SimpleDirectoryReader(input_files=["90-文档-Data/黑悟空/设定.txt"]).load_data() 

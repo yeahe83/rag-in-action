@@ -76,3 +76,4 @@ data/
 **/RAG_LangChain*/
 **/RAG_LlamaIndex*/
 **/04-向量存储-VectorDB/Milvus/volumes/*
+**/_venv_*/

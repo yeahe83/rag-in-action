@@ -1,6 +1,7 @@
 # 准备数据库连接
 import sqlite3
-conn = sqlite3.connect('data/tourism.db')
+import os
+conn = sqlite3.connect('90-文档-Data/tourism.db')
 cursor = conn.cursor()
 
 # 准备Schema描述
@@ -21,7 +22,7 @@ schema_description = """
 
 # 初始化OpenAI客户端
 from openai import OpenAI
-client = OpenAI()
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"), base_url="https://aiyjg.lol/v1")
 
 # 设置查询
 user_query = "查询太原市的AAAAA级景区及其当月游客量"
