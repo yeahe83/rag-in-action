@@ -1,14 +1,14 @@
 # ingest_dbdesc.py
 import logging
 from pymilvus import MilvusClient, DataType, FieldSchema, CollectionSchema
-from pymilvus import model
-import torch
+from pymilvus.model import dense
 import yaml
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 1. 初始化嵌入函数
-embedding_function = model.dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large')
+embedding_function = dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large', api_key=os.getenv("OPENAI_API_KEY"), base_url="https://aiyjg.lol/v1")
 
 # 2. 加载 DB 描述（假设 db_description.yaml 格式为
 #    table_name:

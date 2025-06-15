@@ -1,14 +1,14 @@
 # ingest_ddl.py
 import logging
 from pymilvus import MilvusClient, DataType, FieldSchema, CollectionSchema
-from pymilvus import model
-import torch
+from pymilvus.model import dense
 import yaml
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 1. 初始化嵌入函数
-embedding_function = model.dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large')
+embedding_function = dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large', api_key=os.getenv("OPENAI_API_KEY"), base_url="https://aiyjg.lol/v1")
 
 # 2. 读取 DDL 列表（假设 ddl_statements.yaml 中存放 {table_name: "CREATE TABLE ..."}）
 with open("90-文档-Data/sakila/ddl_statements.yaml","r") as f:

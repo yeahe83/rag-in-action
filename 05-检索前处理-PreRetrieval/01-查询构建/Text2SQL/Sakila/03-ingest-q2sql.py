@@ -1,14 +1,14 @@
 # ingest_q2sql.py
 import logging
 from pymilvus import MilvusClient, DataType, FieldSchema, CollectionSchema
-from pymilvus import model
-import torch
+from pymilvus.model import dense
 import json
+import os
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 # 1. 初始化嵌入函数
-embedding_function = model.dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large')
+embedding_function = dense.OpenAIEmbeddingFunction(model_name='text-embedding-3-large', api_key=os.getenv("OPENAI_API_KEY"), base_url="https://aiyjg.lol/v1")
 
 # 2. 加载 Q->SQL 对（假设 q2sql_pairs.json 数组，每项 { "question": ..., "sql": ... }）
 with open("90-文档-Data/sakila/q2sql_pairs.json", "r") as f:

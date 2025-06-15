@@ -25,6 +25,8 @@ MODEL_NAME = os.getenv("OPENAI_MODEL", "o4-mini")
 def init_embedding():
     return model.dense.OpenAIEmbeddingFunction(
         model_name='text-embedding-3-large',
+        api_key=os.getenv("OPENAI_API_KEY"), 
+        base_url="https://aiyjg.lol/v1"
     )
 
 # 4. Milvus 客户端连接

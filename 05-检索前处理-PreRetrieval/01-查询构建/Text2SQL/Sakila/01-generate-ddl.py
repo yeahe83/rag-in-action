@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 # 1. 加载 .env 中的数据库配置
 load_dotenv()  
 
-host = os.getenv("MYSQL_HOST")
+host = os.getenv("MYSQL_HOST", "localhost")
 port = int(os.getenv("MYSQL_PORT", "3306"))
 user = "root"
 password = "password"
